@@ -7,7 +7,6 @@ import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
 import ReduxThunk from 'redux-thunk';
 
-
 class Appx extends Component {
   componentWillMount() {
     const config = {
@@ -17,8 +16,8 @@ class Appx extends Component {
     projectId: 'sewaze-b07f6',
     storageBucket: 'sewaze-b07f6.appspot.com',
     messagingSenderId: '84765363642'
-  };
-  firebase.initializeApp(config);
+    };
+    firebase.initializeApp(config);
   }
 
   render() {

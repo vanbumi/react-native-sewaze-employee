@@ -2,6 +2,8 @@
 
 ## Setup App
 
+v103
+
 Instal Expo Desktop
 
 Install Expo App on Device
@@ -16,19 +18,19 @@ Install Redux
 
 	npm install --save react-redux redux
 
-Create new folder named src & file name src/App.js
+Create new folder named src & file name src/Appx.js
 
 	import React, {Component} from 'react';
 	import {View, Text} from 'react-native';
 	import {Provider} from 'react-redux';
 	import {createStore} from 'redux';
 
-	class App extends Component {
+	class Appx extends Component {
 		render() {
 			return (
 			<Provider store={createStore()}>
 				<View>
-				<Text>Hello!</Text>
+					<Text>Hello!</Text>
 				</View>
 			</Provider>
 			);
@@ -49,7 +51,7 @@ Creat new folder under src named reducers and file index.js under reducers folde
 	  banana: () => []
 	});
 
-on App.js:	
+on Appx.js:	
 
 	import reducers from './reducers';
 
@@ -86,7 +88,7 @@ Go to firebase console:
 * Click Web setup > copy > create componentWillMount method and paste it there.
 * Change var with const
 
-On App.js
+On Appx.js
 
       class Appx extends Component {
         componentWillMount() {
@@ -450,3 +452,160 @@ Test on device screen :)
 next
 
 ## Synchronous & Asynchronous
+
+In short we going to make Action Creator normally work as **Synchronous** become **Asynchronous** work, because if has **request authentication** it will be return **function** (instead of action) and called with **dispatch** in some of the time. Dispatch will calls in Action with type and payload include there.
+
+Create new action creator in actions/index.js
+
+	export const LoginUser = ({ email, password }) => {
+
+	};
+
+Create logic to handle **firebase login** inside block that Action Creator:
+
+**import firebase here on action/index.js**
+
+	export const LoginUser = ({ email, password }) => {
+		firebase.auth().signInWithEmailAndPassword(email, password)
+	};
+
+And test to console:
+
+	export const LoginUser = ({ email, password }) => {
+		firebase.auth().signInWithEmailAndPassword(email, password)
+			.then(user => console.log(user));
+	};
+
+This issue is how dispatching action only when requested is finish (.then) ? To solve this we going to use library call **ReduxThunk**.
+
+Use **ReduxThunk** to handle **Asynchronous Action Creator**.
+
+Install ReduxThunk:
+
+	npm install --save redux-thunk
+
+#### Action Creator Rules with Thunk
+
+1. Action Creator are functions.
+2. Must return an action.
+3. An action is an object with a "type" property.
+
+**With Thunk**
+
+1. Action Createor are functions.
+2. Must return a "**function**".
+3. This function will be called with "**dispatch**".
+
+### Apply Redux Thunk
+
+In file App.js import redux thunk:
+
+	import ReduxThunk from 'redux-thunk';
+
+ReduxThunk is **middleware** so import helper Middleware from redux in App.js
+
+	import { ..., applyMiddleware }	from 'redux';
+
+Update render method to apply Thunk:
+
+	render() {
+		return (
+			<Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+				<LoginForm />
+			</Provider>
+		);
+	}	
+
+or make it short as below :
+
+	const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
+
+	<Provider store={store}>
+
+> Note: The second argument is for any INITAL_STATE if we want to pass it, mostly for server side rendering. The third argument is called Store enhancer is to add **additional functionality for the Store**.
+
+Update the Action Creator in actions/index.js to return with **dispatch** function:
+
+	export const LoginUser = ({ email, password }) => {
+		return(dispatch) => {
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then(user => console.log(user));
+		};
+	};
+
+#### The flow is like below:
+
+- User do login! ->
+- Action Creator called ->
+- Action Creator returns a function ->
+- Redux Thunk calls with dispatch ->
+- Do login requeste! ->
+- .. Wait ->
+- .. Wait ->
+- Request complete, user logged in ->
+- .then runs ->
+- Dispatch the action. 
+
+Update with apply the Action
+
+	.then(user => {
+		dispatch({ type: 'LOGIN_USER_SUCCESS', payload: user}); 
+	};
+
+become:
+
+	export const loginUser = ({ email, password }) => {
+		return(dispatch) => {
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then(user => {
+					dispatch({ type: 'LOGIN_USER_SUCCESS', payload: user}); 
+				};
+		};
+	};
+
+Put console log in AuthReducer:
+
+	console.log(action);
+
+as bellow:
+
+	export default (state = INITIAL_STATE, action) => {
+		console.log(action);
+		
+		switch(action.type) {
+			case EMAIL_CHANGED:
+				return { ...state, email: action.payload };
+			case PASSWORD_CHANGED:
+				return { ...state, password: action.payload };
+			default:
+				return state;
+		}
+	};	
+
+## Add User
+
+Go to console in firebase website.
+
+In LoginForm import loginUser Action Creator:
+
+	import {.., .., loginUser} from '../actions';
+
+And add to connect helper:
+
+	export default connect(mapStateToProps, {
+		emailChanged, passwordChanged, 	loginUser
+	})(LoginForm);
+
+Update the Button:
+
+	<Button onPress={this.onButtonPress.bind(this)}>
+
+And create method helper for that:
+
+	onButtonPress() {
+		const {email, password} = this.props;
+
+		this.props.loginUser({ email, password }); 
+	}	
+
+Refresh the screen for test :)
