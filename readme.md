@@ -446,3 +446,7 @@ Next last! Give a value for password input:
 	value={this.props.password}
 
 Test on device screen :)
+
+next
+
+## Synchronous & Asynchronous
