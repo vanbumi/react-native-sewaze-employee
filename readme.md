@@ -608,4 +608,10 @@ And create method helper for that:
 		this.props.loginUser({ email, password }); 
 	}	
 
-Refresh the screen for test :)
+Refresh the screen for test :) 
+
+end v.118
+
+### Create LOGIN_USER_SUCCESS
+
+
