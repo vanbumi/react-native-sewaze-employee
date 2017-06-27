@@ -6,8 +6,12 @@ import EquipmentList from './components/EquipmentList';
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene key="login" component={LoginForm} title="Please Login" />
-      <Scene key="equipmentList" component={EquipmentList} title="Equipments" />
+      <Scene key="auth">
+        <Scene key="login" component={LoginForm} title="Please Login" />
+      </Scene>
+      <Scene key="main">
+        <Scene key="equipmentList" component={EquipmentList} title="Equipments" />
+      </Scene>
     </Router>
   );
 };
