@@ -29,7 +29,7 @@ const styles = {
     flex: 2
   },
   labelStyle: {
-    fontSize: 18,
+    fontSize: 15,
     paddingLeft: 20,
     flex: 1
   },
