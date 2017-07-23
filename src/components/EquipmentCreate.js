@@ -9,28 +9,49 @@ class EquipmentCreate extends Component {
         <CardSection>
           <Input 
             label="Name"
-            placeholder="your name"
+            placeholder="equipment name"
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input 
+            label="Owner"
+            placeholder="owner name"
           />
         </CardSection>
 
         <CardSection>
           <Input 
             label="Location"
-            placeholder="Jalan Nuri 19 Bandung"
+            placeholder="lokasi equipment"
           />
         </CardSection>
 
         <CardSection>
           <Input 
             label="Unit"
-            placeholder="10"
+            placeholder="tersedia berapa unit"
           />
         </CardSection>
 
         <CardSection>
           <Input 
             label="Price"
-            placeholder="100000"
+            placeholder="harga sewa per hari"
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input 
+            label="Description"
+            placeholder="kondisi equipment"
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input 
+            label="Image"
+            placeholder="gambar equipment"
           />
         </CardSection>
 
