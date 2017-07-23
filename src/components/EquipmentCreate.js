@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 //import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { equipmentUpdate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class EquipmentCreate extends Component {
@@ -10,6 +12,8 @@ class EquipmentCreate extends Component {
           <Input 
             label="Name"
             placeholder="equipment name"
+            value={this.props.name}
+            onChangeText={text => this.props.equipmentUpdate({ prop: name, value: text })}
           />
         </CardSection>
 
@@ -17,6 +21,8 @@ class EquipmentCreate extends Component {
           <Input 
             label="Owner"
             placeholder="owner name"
+            value={this.props.owner}
+            onChangeText={text => this.props.equipmentUpdate({ prop: owner, value: text })}
           />
         </CardSection>
 
@@ -24,6 +30,8 @@ class EquipmentCreate extends Component {
           <Input 
             label="Location"
             placeholder="lokasi equipment"
+            value={this.props.location}
+            onChangeText={text => this.props.equipmentUpdate({ prop:location, value: text })}
           />
         </CardSection>
 
@@ -31,13 +39,24 @@ class EquipmentCreate extends Component {
           <Input 
             label="Unit"
             placeholder="tersedia berapa unit"
+            value={this.props.unit}
+            onChangeText={text => this.props.equipmentUpdate({ prop: unit, value: text })}
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input 
+            label="Time"
+            placeholder="pilih waktu sewa"
           />
         </CardSection>
 
         <CardSection>
           <Input 
             label="Price"
-            placeholder="harga sewa per hari"
+            placeholder="harga sewa"
+            value={this.props.price}
+            onChangeText={text => this.props.equipmentUpdate({ prop: price, value: price })}
           />
         </CardSection>
 
@@ -45,6 +64,8 @@ class EquipmentCreate extends Component {
           <Input 
             label="Description"
             placeholder="kondisi equipment"
+            value={this.props.description}
+            onChangeText={text => this.props.equipmentUpdate({ prop:description, value: text }) }
           />
         </CardSection>
 
@@ -65,4 +86,28 @@ class EquipmentCreate extends Component {
   }
 }
 
-export default EquipmentCreate;
+const mapStateToProps = (state) => {
+  const { 
+    name,
+    owner,
+    location,
+    unit,
+    time,
+    price,
+    description,
+    image
+  } = state.equipmentForm;
+
+  return {
+    name,
+    owner,
+    location,
+    unit,
+    time,
+    price,
+    description,
+    image
+  };
+};
+
+export default connect(mapStateToProps, { equipmentUpdate })(EquipmentCreate);

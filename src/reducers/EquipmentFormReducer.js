@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   owner: '',
   location: '',
   unit: '',
+  time: '',
   price: '',
   description: '',
   image: ''
