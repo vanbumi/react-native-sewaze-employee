@@ -56,7 +56,7 @@ class EquipmentCreate extends Component {
             label="Price"
             placeholder="harga sewa"
             value={this.props.price}
-            onChangeText={text => this.props.equipmentUpdate({ prop: price, value: price })}
+            onChangeText={text => this.props.equipmentUpdate({ prop: price, value: text })}
           />
         </CardSection>
 
@@ -66,6 +66,7 @@ class EquipmentCreate extends Component {
             placeholder="kondisi equipment"
             value={this.props.description}
             onChangeText={text => this.props.equipmentUpdate({ prop:description, value: text }) }
+            //onChangeText={value => this.props.equipmentUpdate({ prop:description, value }) } bisa ganti value
           />
         </CardSection>
 

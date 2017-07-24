@@ -678,5 +678,8 @@ v.134
 
 this point create new branch devel
 
+### Dinamic property update
+v.135
+
 
 
