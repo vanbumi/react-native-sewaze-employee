@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import { View, Text } from 'react-native';
-import { Picker } from 'react-native'; 
+import { Picker, Text } from 'react-native'; 
 import { connect } from 'react-redux';
 import { equipmentUpdate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
@@ -55,6 +55,7 @@ class EquipmentCreate extends Component {
         </CardSection>
 
         <CardSection>
+          <Text style={styles.pickerTextStyle}>Time Sewa</Text>
           <Picker
             style={{flex: 1}}
             selectedValue={this.props.time}
@@ -93,6 +94,13 @@ class EquipmentCreate extends Component {
     );
   }
 }
+
+const styles = {
+  pickerTextStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+  }
+};
 
 const mapStateToProps = (state) => {
   const { 
