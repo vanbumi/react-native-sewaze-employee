@@ -54,8 +54,8 @@ class EquipmentCreate extends Component {
           />
         </CardSection>
 
-        <CardSection>
-          <Text style={styles.pickerTextStyle}>Time Sewa</Text>
+        <CardSection sytle={{ flexDirection: 'column' }}>
+          <Text style={styles.pickerTextStyle}>Time</Text>
           <Picker
             style={{flex: 1}}
             selectedValue={this.props.time}
@@ -97,7 +97,7 @@ class EquipmentCreate extends Component {
 
 const styles = {
   pickerTextStyle: {
-    fontSize: 18,
+    fontSize: 15,
     paddingLeft: 20,
   }
 };
