@@ -702,6 +702,7 @@ v. 141
 ### Successfull save to Firebase
 v. 142
 
-
+### Resetting form create
+v.143
 
 

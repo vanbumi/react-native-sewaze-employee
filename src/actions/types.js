@@ -5,3 +5,4 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 
 export const EQUIPMENT_UPDATE = 'equipment_update';
+export const EQUIPMENT_CREATE = 'equipment_create';
