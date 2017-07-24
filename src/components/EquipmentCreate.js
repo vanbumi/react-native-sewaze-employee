@@ -9,7 +9,9 @@ class EquipmentCreate extends Component {
   onButtonPress() {
     const { name, owner, location, unit, time, price, description, image } = this.props;
 
-    this.props.equipmentCreate({ name, owner, location, unit, time, price, description, image })
+    this.props.equipmentCreate({ 
+      name, owner, location, unit, time: time || 'Mohon diisi!', price, description, image 
+    })
   }  
 
   render() {
@@ -67,6 +69,7 @@ class EquipmentCreate extends Component {
             selectedValue={this.props.time}
             onValueChange={value => this.props.equipmentUpdate({ prop: 'time', value })}
           >
+            <Picker.Item label="Pilih per waktu" value="Pilih per waktu" />
             <Picker.Item label="Day" value="Day" />
             <Picker.Item label="Week" value="Week" />
             <Picker.Item label="Month" value="Month" />
@@ -79,7 +82,7 @@ class EquipmentCreate extends Component {
             label="Description"
             placeholder="kondisi equipment"
             value={this.props.description}
-            onChangeText={text => this.props.equipmentUpdate({ prop:description, value: text }) }
+            onChangeText={text => this.props.equipmentUpdate({ prop: 'description', value: text }) }
             //onChangeText={value => this.props.equipmentUpdate({ prop:description, value }) } bisa ganti value
           />
         </CardSection>
