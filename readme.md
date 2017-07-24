@@ -681,5 +681,6 @@ this point create new branch devel
 ### Dinamic property update
 v.135
 
-
+### Picker component
+v.136
 

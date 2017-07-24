@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 //import { View, Text } from 'react-native';
+import { Picker } from 'react-native'; 
 import { connect } from 'react-redux';
 import { equipmentUpdate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
@@ -13,7 +14,7 @@ class EquipmentCreate extends Component {
             label="Name"
             placeholder="equipment name"
             value={this.props.name}
-            onChangeText={text => this.props.equipmentUpdate({ prop: name, value: text })}
+            onChangeText={text => this.props.equipmentUpdate({ prop: 'name', value: text })}
           />
         </CardSection>
 
@@ -22,7 +23,7 @@ class EquipmentCreate extends Component {
             label="Owner"
             placeholder="owner name"
             value={this.props.owner}
-            onChangeText={text => this.props.equipmentUpdate({ prop: owner, value: text })}
+            onChangeText={text => this.props.equipmentUpdate({ prop: 'owner', value: text })}
           />
         </CardSection>
 
@@ -31,7 +32,7 @@ class EquipmentCreate extends Component {
             label="Location"
             placeholder="lokasi equipment"
             value={this.props.location}
-            onChangeText={text => this.props.equipmentUpdate({ prop:location, value: text })}
+            onChangeText={text => this.props.equipmentUpdate({ prop: 'location', value: text })}
           />
         </CardSection>
 
@@ -40,14 +41,7 @@ class EquipmentCreate extends Component {
             label="Unit"
             placeholder="tersedia berapa unit"
             value={this.props.unit}
-            onChangeText={text => this.props.equipmentUpdate({ prop: unit, value: text })}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Input 
-            label="Time"
-            placeholder="pilih waktu sewa"
+            onChangeText={text => this.props.equipmentUpdate({ prop: 'unit', value: text })}
           />
         </CardSection>
 
@@ -56,8 +50,21 @@ class EquipmentCreate extends Component {
             label="Price"
             placeholder="harga sewa"
             value={this.props.price}
-            onChangeText={text => this.props.equipmentUpdate({ prop: price, value: text })}
+            onChangeText={text => this.props.equipmentUpdate({ prop: 'price', value: text })}
           />
+        </CardSection>
+
+        <CardSection>
+          <Picker
+            style={{flex: 1}}
+            selectedValue={this.props.time}
+            onValueChange={value => this.props.equipmentUpdate({ prop: 'time', value })}
+          >
+            <Picker.Item label="Day" value="Day" />
+            <Picker.Item label="Week" value="Week" />
+            <Picker.Item label="Month" value="Month" />
+            <Picker.Item label="Year" value="Year" />
+          </Picker>
         </CardSection>
 
         <CardSection>
