@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 //import { View, Text } from 'react-native';
 import { Picker, Text } from 'react-native'; 
 import { connect } from 'react-redux';
-import { equipmentUpdate } from '../actions';
+import { equipmentUpdate, equipmentCreate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class EquipmentCreate extends Component {
+  onButtonPress() {
+    const { name, owner, location, unit, time, price, description, image } = this.props;
+
+    this.props.equipmentCreate({ name, owner, location, unit, time, price, description, image })
+  }  
+
   render() {
     return (
       <Card>
@@ -86,7 +92,7 @@ class EquipmentCreate extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress.bind(this)}>
             Create
           </Button>
         </CardSection>
@@ -126,4 +132,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { equipmentUpdate })(EquipmentCreate);
+export default connect(mapStateToProps, { 
+  equipmentUpdate, equipmentCreate 
+})(EquipmentCreate);
