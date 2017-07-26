@@ -6,3 +6,4 @@ export const LOGIN_USER = 'login_user';
 
 export const EQUIPMENT_UPDATE = 'equipment_update';
 export const EQUIPMENT_CREATE = 'equipment_create';
+export const EQUIPMENT_FETCH_SUCCESS = 'equipment_fetch_success';

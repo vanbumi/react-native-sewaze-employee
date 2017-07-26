@@ -2,7 +2,8 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   EQUIPMENT_UPDATE,
-  EQUIPMENT_CREATE
+  EQUIPMENT_CREATE,
+  EQUIPMENT_FETCH_SUCCESS
 } from './types';
 
 export const equipmentUpdate = ({ prop, value }) => {
@@ -26,3 +27,13 @@ export const equipmentCreate = ({
     };
 };
 
+export const equipmentFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/equipments`)
+      .on('value',snapshot => {
+        dispatch({ type: EQUIPMENT_FETCH_SUCCESS, payload: snapshot.val() });
+      })
+  };
+};

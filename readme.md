@@ -705,4 +705,7 @@ v. 142
 ### Resetting form create
 v.143
 
+### Fetching data from Firebase
+v.144
+
 
