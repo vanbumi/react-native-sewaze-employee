@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
+import { equipmentFetch } from '../actions';
 
 class EquipmentList extends Component {
+  componentWillMount() {
+    this.props.equipmentFetch();
+  }
+
   render() {
     return (
       <View>
@@ -16,5 +22,5 @@ class EquipmentList extends Component {
   }
 } 
 
-export default EquipmentList; 
+export default connect(null, { equipmentFetch }) (EquipmentList); 
 

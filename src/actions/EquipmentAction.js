@@ -34,6 +34,6 @@ export const equipmentFetch = () => {
     firebase.database().ref(`/users/${currentUser.uid}/equipments`)
       .on('value',snapshot => {
         dispatch({ type: EQUIPMENT_FETCH_SUCCESS, payload: snapshot.val() });
-      })
+      });
   };
 };
