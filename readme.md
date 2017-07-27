@@ -676,6 +676,36 @@ Create new Action -->
 ### Handle form Update at Reducer
 v.134
 
+this point create new branch devel
 
+### Dinamic property update
+v.135
+
+### Picker component
+v.136
+
+### Picker style override
+v.137
+
+### Firebase json schema
+v.138
+
+### Data security in Firebase
+v.139
+
+### Creating record with Firebase
+v. 140
+
+### Default form value
+v. 141
+
+### Successfull save to Firebase
+v. 142
+
+### Resetting form create
+v.143
+
+### Fetching data from Firebase
+v.144
 
 
