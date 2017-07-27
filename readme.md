@@ -673,7 +673,7 @@ v.133
 
 Create new Action --> 
 
-### Handle form Updae at Reducer
+### Handle form Update at Reducer
 v.134
 
 
